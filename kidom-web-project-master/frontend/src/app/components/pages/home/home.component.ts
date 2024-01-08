@@ -10,6 +10,7 @@ import { Item } from '../../../../item';
 import { CartService } from '../../../services/cart.service';
 import { Observable } from 'rxjs';
 import { observeNotification } from 'rxjs/internal/Notification';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -32,6 +33,7 @@ export class HomeComponent {
     private productServices: ProductService,
     private activatedRoute: ActivatedRoute,
     private catagoryServices: CatagoryService,
+    private router: Router,
       // Sửa tên thành activatedRoute
   ) {
 
@@ -70,5 +72,7 @@ export class HomeComponent {
     // Gọi hàm addToCart từ CartService để thêm sản phẩm vào giỏ hàng
     this.cartService.addToCart(product);
   }
+  navigateToProductList(categoryValue: string): void {
+    this.router.navigate(['/product'], { queryParams: { category: categoryValue.toUpperCase() } });
+  }
 }
-

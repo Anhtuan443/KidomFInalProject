@@ -59,8 +59,7 @@
         <div class="row p-3">
             <div class="col-6 col-md-4 col-lg-2 text-center"
                 *ngFor="let catagory of catagorys">
-                <a routerLink="catagory/{{catagory.name}}"
-                    class="text-decoration-none">
+                <a (click)="navigateToProductList(catagory.name)" class="text-decoration-none">
                     <img [src]="catagory.imageUrl" alt class="cat">
                     <div class="card-title text-black">
                         <h3 class="card-title text-center mt-2 categoryname">{{catagory.name}}</h3>

@@ -177,3 +177,49 @@ transition: transform 0.3s ease-in-out;
         padding: 12px 10px;
 }
 }
+.brand-filter-container {
+    position: relative;
+  }
+  
+/* .brand-item {
+cursor: pointer;
+padding: 5px;
+margin-bottom: 5px;
+border: 1px solid #ccc;
+} */
+
+.dropdown-arrow {
+position: absolute;
+top: 0;
+right: 0;
+cursor: pointer;
+padding: 5px;
+border: 1px solid #ccc;
+background-color: #f8f8f8;
+}
+ul li {
+    cursor: pointer;
+    padding: 5px;
+    border-bottom: 1px solid #ccc;
+    transition: background-color 0.3s ease-in-out; /* Thêm hiệu ứng chuyển động */
+  }
+  
+ul li:hover {
+background-color: #2983c7; /* Màu xám khi hover */
+}
+.category-filter-container {
+    position: relative;
+  }
+  
+.category-item, .brand-item {
+cursor: pointer;
+padding: 5px;
+margin-bottom: 5px;
+border: 1px solid #ccc;
+position: relative;
+}
+.remove-filter {
+    font-weight: bold;
+    color: red;
+    cursor: pointer;
+  }
