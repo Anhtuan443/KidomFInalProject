@@ -5,6 +5,7 @@ import { ProductService } from '../../../services/product.service';
 import { Catagory } from '../../../shared/models/Catagory';
 import { CatagoryService } from '../../../services/catagory.service';
 import { CartService} from '../../../services/cart.service';
+import { Observable } from 'rxjs';
 // import { faStar} from '@fortawesome/free-solid-svg-icons';
 import { Item } from '../../../../item';
 
@@ -23,7 +24,8 @@ export class ProductDetailComponent implements OnInit {
     quantity: number=1;
     relatedProducts: Product[] = [];
     isClicked: boolean = false;
-
+    products2: Product[] = [];
+    
   constructor(
     private productService: ProductService,
     private activatedRoute: ActivatedRoute,
@@ -31,8 +33,30 @@ export class ProductDetailComponent implements OnInit {
     private route: ActivatedRoute,
     private cartService: CartService,
     private router: Router,
-
+    private productServices: ProductService,
+    private catagoryServices: CatagoryService,
   ) {
+    productServices.getThumbnail().subscribe(res => {
+      this.products2 = res;
+    });
+    this.catagorys = catagoryServices.getAll();
+
+    console.log(this.products);
+
+    let observeProduct: Observable<Product[]>;
+
+    this.activatedRoute.params.subscribe((params) => {
+      if (params.searchTerm) {
+        observeProduct = this.productServices.getAllProductsBySearchTerm(params.searchTerm);
+      } else {
+        observeProduct = productServices.getThumbnail();
+      }
+
+      observeProduct.subscribe(res => {
+        this.products = res;
+      })
+    });
+    
     route.queryParams.subscribe(params => {
       productService.getDetail(params['id']).subscribe(res => {
         this.products = res;
@@ -64,17 +88,16 @@ export class ProductDetailComponent implements OnInit {
     console.log('Quantity changed:', this.quantity);
   }
 //------------------------------------------------
-
-  ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      const productId = params['id'];
-      // Gọi phương thức hoặc service để lấy sản phẩm chi tiết (this.productServices.getDetail(productId))
-      // Sau đó, gọi phương thức hoặc service để lấy các sản phẩm cùng danh mục
-      this.productService.getProductsByCategory(this.thumbnail.category).subscribe(res => {
-        this.relatedProducts = res;
-      });
-  });
-  }
+ngOnInit(): void {
+  this.route.params.subscribe(params => {
+    const productId = params['id'];
+    // Gọi phương thức hoặc service để lấy sản phẩm chi tiết (this.productServices.getDetail(productId))
+    // Sau đó, gọi phương thức hoặc service để lấy các sản phẩm cùng danh mục
+    this.productService.getProductsByCategory(this.thumbnail.category).subscribe(res => {
+      this.relatedProducts = res;
+    });
+});
+}
 
   changeThumbnail(index: number): void {
     let temp = this.thumbnail;
@@ -95,5 +118,5 @@ export class ProductDetailComponent implements OnInit {
     //Chuyển qua cart
     this.router.navigate(['/cart']);
   }
-
+  
 }
