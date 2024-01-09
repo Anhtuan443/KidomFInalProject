@@ -3,7 +3,7 @@
     <div>
         <ng-template #content let-c="close" let-d="dismiss" class = "new">
             <div class="modal-header">
-              <h4 class="modal-title" id="modal-basic-title">Fill Information</h4>
+              <h4 class="modal-title" id="modal-basic-title">Thông tin sản phẩm</h4>
               <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
             </div>
             <div class="modal-body">
@@ -11,36 +11,40 @@
                 <label for="id">ID:</label>
                 <input type="text" id="id" [(ngModel)]="formData.id" required>
           
-                <label for="productName">Product Name:</label>
+                <label for="productName">Tên sản phẩm:</label>
                 <input type="text" id="productName" [(ngModel)]="formData.productName" required>
           
-                <label for="brand">Brand:</label>
+                <label for="brand">Thương hiệu:</label>
                 <input type="text" id="brand" [(ngModel)]="formData.brand" required>
           
-                <label for="price">Price:</label>
+                <label for="price">Giá:</label>
                 <input type="number" id="price" [(ngModel)]="formData.price" required>
           
-                <label for="category">Category:</label>
+                <label for="category">Thể loại:</label>
                 <select id="category" [(ngModel)]="formData.category" required>
-                  <option value="Category 1">Category 1</option>
-                  <option value="Category 2">Category 2</option>
+                  <option value="HÓA TRANG">Hoá trang</option>
+                  <option value="THỦ CÔNG - MỸ THUẬT">Thủ công - mỹ thuật</option>
+                  <option value="ĐỒ CHƠI NGOÀI TRỜI">Đồ chơi ngoài trời</option>
+                  <option value="THỂ THAO">Thể thao</option>
+                  <option value="TRÒ CHƠI TRÍ TUỆ">Trò chơi trí tuệ</option>
+                  <option value="BÚP BÊ - GẤU BÔNG">Búp bê, gấu bông</option>
                   <!-- Add other categories -->
                 </select>
           
-                <label for="details">Details:</label>
+                <label for="details">Chi tiết:</label>
                 <textarea id="details" [(ngModel)]="formData.details" required></textarea>
           
-                <label for="images">Images:</label>
+                <label for="images">Ảnh:</label>
                 <input type="file" id="images" (change)="handleImageChange($event)" multiple accept="image/*">
                 
                 <div class="modal-footer">
-                  <button type="submit" class="btn btn-outline-dark btn-save">Save</button>
+                  <button type="submit" class="btn btn-outline-dark btn-save">Thêm</button>
                 </div>
               </form>
             </div>
         </ng-template>          
-        <button class="button" (click)="open(content)">Add</button>
-        <button class="button" >Remove</button>
+        <button class="button" (click)="open(content)">Thêm</button>
+        <button class="button" >Xoá</button>
     </div>
 </div>
 

@@ -58,11 +58,14 @@ input[type="text"] {
     padding: 15px;
     background-color: #f5f5f5;
     border-bottom: 1px solid #dee2e6;
+    text-align: center;
+    align-items: center;
   }
   
   .modal-title {
     margin-top: 0;
     margin-bottom: 0;
+    
   }
   
   .modal-body {
@@ -117,7 +120,7 @@ input[type="text"] {
   }
   
   .btn-outline-dark:hover {
-    background-color: #343a40;
+    background-color: #0D5D9C;
     color: white;
   }
   

@@ -64,17 +64,16 @@ export class ProductDetailComponent implements OnInit {
     console.log('Quantity changed:', this.quantity);
   }
 //------------------------------------------------
-
-  ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      const productId = params['id'];
-      // Gọi phương thức hoặc service để lấy sản phẩm chi tiết (this.productServices.getDetail(productId))
-      // Sau đó, gọi phương thức hoặc service để lấy các sản phẩm cùng danh mục
-      this.productService.getProductsByCategory(this.thumbnail.category).subscribe(res => {
-        this.relatedProducts = res;
-      });
-  });
-  }
+ngOnInit(): void {
+  this.route.params.subscribe(params => {
+    const productId = params['id'];
+    // Gọi phương thức hoặc service để lấy sản phẩm chi tiết (this.productServices.getDetail(productId))
+    // Sau đó, gọi phương thức hoặc service để lấy các sản phẩm cùng danh mục
+    this.productService.getProductsByCategory(this.thumbnail.category).subscribe(res => {
+      this.relatedProducts = res;
+    });
+});
+}
 
   changeThumbnail(index: number): void {
     let temp = this.thumbnail;
@@ -95,5 +94,5 @@ export class ProductDetailComponent implements OnInit {
     //Chuyển qua cart
     this.router.navigate(['/cart']);
   }
-
+  
 }
