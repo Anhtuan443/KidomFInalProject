@@ -36,12 +36,13 @@ export class ProductDetailComponent implements OnInit {
     private productServices: ProductService,
     private catagoryServices: CatagoryService,
   ) {
+    // Sản phẩm liên quan
     productServices.getThumbnail().subscribe(res => {
       this.products2 = res;
     });
     this.catagorys = catagoryServices.getAll();
 
-    console.log(this.products);
+    console.log(this.products2);
 
     let observeProduct: Observable<Product[]>;
 
@@ -53,10 +54,10 @@ export class ProductDetailComponent implements OnInit {
       }
 
       observeProduct.subscribe(res => {
-        this.products = res;
+        this.products2 = res;
       })
     });
-    
+    // Hết liên quan
     route.queryParams.subscribe(params => {
       productService.getDetail(params['id']).subscribe(res => {
         this.products = res;
