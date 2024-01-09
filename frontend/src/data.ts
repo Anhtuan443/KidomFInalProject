@@ -46,7 +46,7 @@ export const CATAGORYS: Catagory[] = [
         name: "Đồ chơi ngoài trời"
     },
     {
-        imageUrl: catagoryPath + 'hoatrang.png',
+        imageUrl: catagoryPath + 'Hoatrang.png',
         name: "Hoá trang",
     },
     {
