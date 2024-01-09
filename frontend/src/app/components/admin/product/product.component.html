@@ -9,19 +9,19 @@
             <div class="modal-body">
               <form (submit)="c('Save click')">
                 <label for="id">ID:</label>
-                <input type="text" id="id" [(ngModel)]="formData.id" required>
+                <input name="id" type="text" id="id" [(ngModel)]="formData.id" required>
           
                 <label for="productName">Tên sản phẩm:</label>
-                <input type="text" id="productName" [(ngModel)]="formData.productName" required>
+                <input name = "name" type="text" id="productName" [(ngModel)]="formData.productName" required>
           
                 <label for="brand">Thương hiệu:</label>
-                <input type="text" id="brand" [(ngModel)]="formData.brand" required>
+                <input name="brand" type="text" id="brand" [(ngModel)]="formData.brand" required>
           
                 <label for="price">Giá:</label>
-                <input type="number" id="price" [(ngModel)]="formData.price" required>
+                <input name="price" type="number" id="price" [(ngModel)]="formData.price" required>
           
                 <label for="category">Thể loại:</label>
-                <select id="category" [(ngModel)]="formData.category" required>
+                <select name="category" id="category" [(ngModel)]="formData.category" required>
                   <option value="HÓA TRANG">Hoá trang</option>
                   <option value="THỦ CÔNG - MỸ THUẬT">Thủ công - mỹ thuật</option>
                   <option value="ĐỒ CHƠI NGOÀI TRỜI">Đồ chơi ngoài trời</option>
@@ -32,7 +32,7 @@
                 </select>
           
                 <label for="details">Chi tiết:</label>
-                <textarea id="details" [(ngModel)]="formData.details" required></textarea>
+                <textarea name="detail" id="details" [(ngModel)]="formData.details" required></textarea>
           
                 <label for="images">Ảnh:</label>
                 <input type="file" id="images" (change)="handleImageChange($event)" multiple accept="image/*">

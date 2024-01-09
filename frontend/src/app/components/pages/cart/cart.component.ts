@@ -94,7 +94,7 @@ export class CartComponent implements OnInit {
         this.clearCart();
       }
       else {
-       
+        
       }
     }
   }
