@@ -39,11 +39,9 @@ export class CartService {
       const existingItem = this.cartItems[existingItemIndex];
       //Thêm vào check
       console.log('Existing Item:', existingItem);
-      // Kiểm tra số lượng sản phẩm trong kho trước khi thêm vào giỏ hàng
-      if (existingItem.quantity < item.quantity) {
-        const quantityToAdd = Math.min(item.quantity - existingItem.quantity, existingItem.quantity);
-        existingItem.quantity += quantityToAdd; // Cộng dồn số lượng sản phẩm cùng loại trong giỏ hàng
-      }
+
+      existingItem.quantity += item.quantity;
+      
       //Thêm vào check
       console.log('Cart Items after updating:', this.cartItems);
     } else {

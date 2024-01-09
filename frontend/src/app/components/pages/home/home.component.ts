@@ -60,6 +60,7 @@ export class HomeComponent {
 
   addToCart(product: Product) {
     //Thêm để check
+    product.quantity = 1;
     console.log('Adding to Cart:', product);
     // Gọi hàm addToCart từ CartService để thêm sản phẩm vào giỏ hàng
     this.cartService.addToCart(product);
