@@ -110,11 +110,13 @@ ngOnInit(): void {
 
 
   // Gọi hàm addToCart từ CartService để thêm sản phẩm vào giỏ hàng
-  addToCart(thumbnail: Product) {
-    this.cartService.addToCart(thumbnail);
+  addToCart(item: Product) {
+    item.quantity = this.quantity;
+    this.cartService.addToCart(item);
   }
-  buyNow(thumbnail: Product) {
-    this.cartService.addToCart(thumbnail);
+  buyNow(item: Product) {
+    item.quantity = this.quantity;
+    this.cartService.addToCart(item);
     //Chuyển qua cart
     this.router.navigate(['/cart']);
   }
