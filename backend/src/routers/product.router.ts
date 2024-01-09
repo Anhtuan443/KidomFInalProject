@@ -52,6 +52,7 @@ router.get("/search/:searchTerm", asyncHandler(
         );
 
         const products = getAll(data).filter(product => (product.imageUrl || '').includes('_thumb.'));
+
         res.send(products);
     }
 ))

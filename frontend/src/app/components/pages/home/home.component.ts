@@ -40,18 +40,9 @@ export class HomeComponent {
     
 
     this.banners = bannerServices.getAll();
-
-    productServices.getThumbnail().subscribe(res => {
-      this.products = res;
-    });
-
     this.catagorys = catagoryServices.getAll();
 
-    console.log(this.products);
-
     let observeProduct: Observable<Product[]>;
-
-
 
     this.activatedRoute.params.subscribe((params) => {
       if (params.searchTerm) {
@@ -60,6 +51,7 @@ export class HomeComponent {
         observeProduct = productServices.getThumbnail();
       }
 
+      
       observeProduct.subscribe(res => {
         this.products = res;
       })
@@ -72,6 +64,7 @@ export class HomeComponent {
     // Gọi hàm addToCart từ CartService để thêm sản phẩm vào giỏ hàng
     this.cartService.addToCart(product);
   }
+
   navigateToProductList(categoryValue: string): void {
     this.router.navigate(['/product'], { queryParams: { category: categoryValue.toUpperCase() } });
   }
