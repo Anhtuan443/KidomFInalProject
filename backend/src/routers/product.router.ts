@@ -3,6 +3,8 @@ import { CATAGORYS } from "../data";
 import PRODUCTS from "../data";
 import asyncHandler from "express-async-handler";
 import { ProcductModel, Product } from "../models/product.model";
+import upload, { gfs } from "../configs/storage.config";
+import { HTTP_FILE_EXISTS } from "../constants/http_status";
 
 const router = Router();
 
@@ -96,5 +98,95 @@ router.get("/:id", asyncHandler (
         res.send(product);
     }
 ))
+
+router.post("/image/upload", upload.single("file"), asyncHandler(
+    async (req, res) => {
+        res.json({msg: "Uploaded image"});
+    }
+));
+
+router.get("/image/:filename", asyncHandler(
+    async (req, res) => {
+        const filename = req.params.filename;
+        gfs.files.findOne({filename: filename}, function (err, file) {
+            if (!file || file.length === 0) {
+                return res.status(404).send("File not found");
+            }
+
+            var readStream = gfs.createReadStream(file.filename);
+            
+            var bufs: any[] = [];
+            readStream.on('data', function(chunk) {
+
+                bufs.push(chunk);
+            
+            }).on('end', function() { // done
+            
+                var fbuf = Buffer.concat(bufs);
+            
+                var base64 = (fbuf.toString('base64'));
+            
+                res.json({img: '<img src="data:image/png;base64,' + base64 + '">'});
+            });
+        })
+    }
+));
+
+router.post("/upload", asyncHandler(
+    async (req, res) => {
+
+        console.log(req.body);
+
+        const found = await ProcductModel.exists(
+            {id: req.body.id}
+        );
+
+        if (found) {
+            res.status(HTTP_FILE_EXISTS).send("Product exists");
+        } else {
+            await ProcductModel.create({
+                id: req.body.id,
+                name: req.body.name,
+                price: req.body.price,
+                category: req.body.category,
+                imageUrl: req.body.imgUrls,
+                description: req.body.description,
+                star: 0,
+                brand: req.body.brand,
+                stock: req.body.stock,
+                time: new Date(),
+            });
+            res.json({msg: "Uploaded product"});
+        }
+
+    }
+));
+
+router.delete("/delete/:id", asyncHandler(
+    async (req, res) => {
+        const id = req.params.id;
+        await ProcductModel.deleteOne({id: id});
+        res.json({msg: "Deleted product"});
+    }
+));
+
+router.delete("/image/delete/:filename", asyncHandler(
+    async (req, res) => {
+        const filename = req.params.filename;
+        gfs.remove({filename: filename, root: "uploads"}, function (err: Error) {
+            if (err) {
+                res.status(404).send("File not found");
+            }
+
+            res.json({msg: "Deleted image"});
+        });
+    }
+));
+
+// router.post("/upload", upload.array("images"), asyncHandler(
+//     async (req, res) => {
+//         res.json({file: req.file});
+//     }
+// ));
 
 export default router;

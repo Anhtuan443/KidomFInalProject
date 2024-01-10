@@ -7,21 +7,24 @@
               <button type="button" class="btn-close" aria-label="Close" (click)="d('Cross click')"></button>
             </div>
             <div class="modal-body">
-              <form (submit)="c('Save click')">
+              <form (ngSubmit)="submitForm()" #productForm="ngForm">
                 <label for="id">ID:</label>
-                <input name="id" type="text" id="id" [(ngModel)]="formData.id" required>
+                <input name="id" type="text" id="id" [(ngModel)]="model.id" required>
           
                 <label for="productName">Tên sản phẩm:</label>
-                <input name = "name" type="text" id="productName" [(ngModel)]="formData.productName" required>
+                <input name = "name" type="text" id="name" [(ngModel)]="model.name" required>
           
                 <label for="brand">Thương hiệu:</label>
-                <input name="brand" type="text" id="brand" [(ngModel)]="formData.brand" required>
-          
+                <input name="brand" type="text" id="brand" [(ngModel)]="model.brand" required>
+                
+                <label for="stock">Số lượng:</label>
+                <input name="stock" type="number" id="stock" [(ngModel)]="model.stock" required>
+
                 <label for="price">Giá:</label>
-                <input name="price" type="number" id="price" [(ngModel)]="formData.price" required>
+                <input name="price" type="number" id="price" [(ngModel)]="model.price" required>
           
                 <label for="category">Thể loại:</label>
-                <select name="category" id="category" [(ngModel)]="formData.category" required>
+                <select name="category" id="category" [(ngModel)]="model.category" required>
                   <option value="HÓA TRANG">Hoá trang</option>
                   <option value="THỦ CÔNG - MỸ THUẬT">Thủ công - mỹ thuật</option>
                   <option value="ĐỒ CHƠI NGOÀI TRỜI">Đồ chơi ngoài trời</option>
@@ -31,13 +34,17 @@
                   <!-- Add other categories -->
                 </select>
           
-                <label for="details">Chi tiết:</label>
-                <textarea name="detail" id="details" [(ngModel)]="formData.details" required></textarea>
-          
+                <label for="description">Chi tiết:</label>
+                <textarea name="detail" id="description" [(ngModel)]="model.description" optional></textarea>
+                
+                <label for="images">Thumbnail:</label>
+                <input name="images" type="file" id="images" (change)="handleImageChangeThumbnail($event)" single accept="image/*">
+
                 <label for="images">Ảnh:</label>
-                <input type="file" id="images" (change)="handleImageChange($event)" multiple accept="image/*">
+                <input name="images" type="file" id="images" (change)="handleImageChange($event)" multiple accept="image/*">
                 
                 <div class="modal-footer">
+                  <!-- <button type="submit" class="btn btn-outline-dark btn-save" [disabled]="!productForm.form.valid">Thêm</button> -->
                   <button type="submit" class="btn btn-outline-dark btn-save">Thêm</button>
                 </div>
               </form>
@@ -52,22 +59,30 @@
     <thead>
         <tr>
             <th>ID</th>
+            <th>Hình</th>
             <th>Tên sản phẩm</th>
             <th>Danh mục</th>
             <th>Giá</th>
+            <th>Số lượng</th>
             <th>Thương hiệu</th>
             <th>Mô tả</th>
+            <th>Thao tác</th>
         </tr>
     </thead>
-    <tbody>
+    <tbody *ngFor="let product of products; index as i">
         <!-- Add your table rows dynamically here -->
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
+          <tr>
+              <td>{{product.id}}</td>
+              <td class="image-cell" [innerHTML]="product.imageHTML"></td>
+              <td>{{product.name}}</td>
+              <td>{{product.category}}</td>
+              <td>{{product.price}}</td>
+              <td>{{product.stock}}</td>
+              <td>{{product.brand}}</td>
+              <td>{{product.description}}</td>
+              <td>
+                <button class="button"  (click)="deleteProduct(product)">Delete</button>
+              </td>
+          </tr>
     </tbody>
 </table>
