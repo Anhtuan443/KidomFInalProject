@@ -20,7 +20,7 @@ export const ProductSchema = new Schema<Product>(
         price: {type: Number, required:true},
         category: {type: String, required:true},
         imageUrl: {type: [String], required:true},
-        description: {type: String, required:true},
+        description: {type: String, required:false},
         star: {type: Number, required:true},
         brand: {type: String, required:false},
         stock: {type: Number, required:true},
