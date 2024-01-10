@@ -36,6 +36,21 @@ export class ProductDetailComponent implements OnInit {
     private productServices: ProductService,
     private catagoryServices: CatagoryService,
   ) {
+    
+    route.queryParams.subscribe(params => {
+      productService.getDetail(params['id']).subscribe(res => {
+        this.products = res;
+        console.log(params['id']);
+        console.log(this.products);
+      });
+      productService.getProductThumbnail(params['id']).subscribe(res => {
+        this.thumbnail = res;
+      });
+      console.log(this.products);
+    });
+    this.catagorys= catagoryService.getAll(); 
+    // this.relatedProducts = productService.getAll();
+    
     // Sản phẩm liên quan
     productServices.getThumbnail().subscribe(res => {
       this.products2 = res;
@@ -57,20 +72,7 @@ export class ProductDetailComponent implements OnInit {
         this.products2 = res;
       })
     });
-    // Hết liên quan
-    route.queryParams.subscribe(params => {
-      productService.getDetail(params['id']).subscribe(res => {
-        this.products = res;
-        console.log(params['id']);
-        console.log(this.products);
-      });
-      productService.getProductThumbnail(params['id']).subscribe(res => {
-        this.thumbnail = res;
-      });
-      console.log(this.products);
-    });
-    this.catagorys= catagoryService.getAll(); 
-    // this.relatedProducts = productService.getAll();
+    // Hết sản phẩm liên quan
   }
   toggleHeart() {
     this.isClicked = !this.isClicked;
