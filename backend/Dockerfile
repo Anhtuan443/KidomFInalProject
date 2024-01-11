@@ -1,5 +1,5 @@
 FROM node:20-slim
-EXPOSE 80 5000 5001
+EXPOSE 5000
 
 WORKDIR /app
 
