@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import multer from "multer";
-import ENV from "../../../env.json";
+import ENV from "../../env.json";
 import Grid from "gridfs-stream";
 import GridFsStorage from "multer-gridfs-storage";
 import { HTTP_FILE_EXISTS } from "../constants/http_status";

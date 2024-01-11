@@ -23,7 +23,7 @@ dbConnect();
 import productRouter from './routers/product.router';
 import userRouter from './routers/user.router';
 
-import ENV from '../../env.json';
+import ENV from '../env.json';
 
 app.use("/api/product", productRouter);
 app.use("/api/user", userRouter);

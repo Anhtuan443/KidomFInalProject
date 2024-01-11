@@ -1,6 +1,6 @@
 import ENV from '../../../../../env.json';
 
-const BASE_URL = 'http://localhost:' + ENV.PORT;
+const BASE_URL = '';
 
 export const PRODUCTS_URL = BASE_URL + '/api/product';
 
