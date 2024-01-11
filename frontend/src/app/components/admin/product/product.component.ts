@@ -7,6 +7,7 @@ import { read } from 'fs';
 import { Observable } from 'rxjs';
 import { ViewChild } from '@angular/core';
 import { ElementRef } from '@angular/core';
+import { floor, random } from 'mathjs';
 
 @Component({
   selector: 'app-product',
@@ -60,10 +61,21 @@ export class ProductComponent {
     // this.router.navigate(['/admin/product']);
   }
 
+  getRandomNumber(): number {
+    // Generate a random number between 0 and 50 (inclusive)
+    const randomNumber = floor(random() * 51);
+  
+    // Scale the random number by 0.1 to get a step of 0.1
+    const scaledNumber = randomNumber * 0.1;
+  
+    return scaledNumber;
+  }
+
   resetForm() {
     this.model = new Product();
     this.model.stock = 1;
     this.model.price = 0;
+    this.model.star = this.getRandomNumber();
 
     this.images = [];
     this.thumbnail = new Image();

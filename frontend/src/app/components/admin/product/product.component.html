@@ -44,8 +44,8 @@
                 <input name="images" type="file" id="images" (change)="handleImageChange($event)" multiple accept="image/*">
                 
                 <div class="modal-footer">
-                  <!-- <button type="submit" class="btn btn-outline-dark btn-save" [disabled]="!productForm.form.valid">Thêm</button> -->
-                  <button type="submit" class="btn btn-outline-dark btn-save">Thêm</button>
+                  <button type="submit" class="btn btn-outline-dark btn-save" [disabled]="!productForm.form.valid">Thêm</button>
+                  <!-- <button type="submit" class="btn btn-outline-dark btn-save">Thêm</button> -->
                 </div>
               </form>
             </div>
@@ -64,6 +64,7 @@
             <th>Danh mục</th>
             <th>Giá</th>
             <th>Số lượng</th>
+            <th>Star</th>
             <th>Thương hiệu</th>
             <th>Mô tả</th>
             <th>Thao tác</th>
@@ -78,6 +79,7 @@
               <td>{{product.category}}</td>
               <td>{{product.price}}</td>
               <td>{{product.stock}}</td>
+              <td>{{product.star}}</td>
               <td>{{product.brand}}</td>
               <td>{{product.description}}</td>
               <td>

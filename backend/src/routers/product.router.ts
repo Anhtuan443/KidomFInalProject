@@ -151,7 +151,7 @@ router.post("/upload", asyncHandler(
                 category: req.body.category,
                 imageUrl: req.body.imgUrls,
                 description: req.body.description,
-                star: 0,
+                star: req.body.star,
                 brand: req.body.brand,
                 stock: req.body.stock,
                 time: new Date(),
