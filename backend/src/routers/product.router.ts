@@ -9,13 +9,37 @@ import { HTTP_FILE_EXISTS } from "../constants/http_status";
 const router = Router();
 
 
+function getImage (filename: string) {
+    gfs.files.findOne({filename: filename}, function (err, file) {
+        if (!file || file.length === 0) {
+            return "";
+        }
+
+        var readStream = gfs.createReadStream(file.filename);
+        
+        var bufs: any[] = [];
+        readStream.on('data', function(chunk) {
+
+            bufs.push(chunk);
+        
+        }).on('end', function() { // done
+        
+            var fbuf = Buffer.concat(bufs);
+        
+            var base64 = (fbuf.toString('base64'));
+        
+            return 'data:image/png;base64,' + base64;
+        });
+    })
+}
+
 function getAll(products: Product[]) {
     var data = [];
 
     for (var item of products) {
         for (var img of item.imageUrl) {
             var temp = JSON.parse(JSON.stringify(item));
-            temp.imageUrl = img;
+            temp.imageUrl = getImage(img);
 
             data.push(temp);
         }
@@ -102,33 +126,6 @@ router.get("/:id", asyncHandler (
 router.post("/image/upload", upload.single("file"), asyncHandler(
     async (req, res) => {
         res.json({msg: "Uploaded image"});
-    }
-));
-
-router.get("/image/:filename", asyncHandler(
-    async (req, res) => {
-        const filename = req.params.filename;
-        gfs.files.findOne({filename: filename}, function (err, file) {
-            if (!file || file.length === 0) {
-                return res.status(404).send("File not found");
-            }
-
-            var readStream = gfs.createReadStream(file.filename);
-            
-            var bufs: any[] = [];
-            readStream.on('data', function(chunk) {
-
-                bufs.push(chunk);
-            
-            }).on('end', function() { // done
-            
-                var fbuf = Buffer.concat(bufs);
-            
-                var base64 = (fbuf.toString('base64'));
-            
-                res.json({img: '<img src="data:image/png;base64,' + base64 + '">'});
-            });
-        })
     }
 ));
 

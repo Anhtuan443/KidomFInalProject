@@ -111,10 +111,6 @@ export class ProductService {
     )
   }
 
-  getImage(fileName: string): Observable<any> {
-    return this.http.get<any>(PRODUCT_IMAGE_URL + fileName);
-  }
-
   uploadImage(images: Image[]) {
     console.log('Upload image');
 

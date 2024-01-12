@@ -36,11 +36,6 @@ export class ProductComponent {
     this.products = [];
     this.productService.getThumbnail().subscribe(res => {
       this.products = res;
-      for (let i = 0; i < this.products.length; i++) {
-        this.productService.getImage(this.products[i].imageUrl).subscribe(res => {
-          this.products[i].imageHTML = res.img;
-        });
-      };
     });
   }
 

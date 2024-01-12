@@ -7,7 +7,6 @@ export class Product {
     price!: number;
     category!: string;
     imageUrl!: string;
-    imageHTML?: string;
     description?: string = "";
     brand?: string; 
     stock!: number;
