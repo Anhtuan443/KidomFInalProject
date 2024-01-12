@@ -204,27 +204,25 @@
         <div class="container">
             <div class="row">
                 <h4 class="relative-product py-3">Sản phẩm liên quan</h4>
-                <div class="col-6 col-md-3" *ngFor="let product of products2.slice(0,8); index as i">
-                    <ng-container *ngIf="product.category === thumbnail.category">
-                        <a routerLink="/productDetail/{{product.name}}" [queryParams]="{id: product.id}" class="text-decoration-none">
-                            <div class="card mb-3">
-                                <img [src]="product.imageHTML" class="card-img" alt="" id="hinh{{i + 1}}">
-                                <div class="p-2">
-                                    <h6 class="text-black-50 p-2">{{product.category}}</h6>
-                                    <h5 class="card-title text-center mt-2">{{product.name}}</h5>
-                                    <h6 class="card-text text-center price mb-1">{{product.price}} VND</h6>
-                                    <div class="d-flex align-items-center flex-wrap">
-                                        <div class="stars mr-auto align-items-center">
-                                            <app-star-rating [stars]="product.star" />
-                                        </div>
-                                        <div class="mt-2 ml">
-                                            <span class="card-title"> Có sẵn: {{product.stock}}</span>
-                                        </div>
+                <div class="col-6 col-md-3" *ngFor="let product of productsRelated.slice(0,8); index as i">
+                    <a routerLink="/productDetail/{{product.name}}" [queryParams]="{id: product.id}" class="text-decoration-none">
+                        <div class="card mb-3">
+                            <img [src]="product.imageHTML" class="card-img" alt="" id="hinh{{i + 1}}">
+                            <div class="p-2">
+                                <h6 class="text-black-50 p-2">{{product.category}}</h6>
+                                <h5 class="card-title text-center mt-2">{{product.name}}</h5>
+                                <h6 class="card-text text-center price mb-1">{{product.price}} VND</h6>
+                                <div class="d-flex align-items-center flex-wrap">
+                                    <div class="stars mr-auto align-items-center">
+                                        <app-star-rating [stars]="product.star" />
+                                    </div>
+                                    <div class="mt-2 ml">
+                                        <span class="card-title"> Có sẵn: {{product.stock}}</span>
                                     </div>
                                 </div>
                             </div>
-                        </a>
-                    </ng-container>
+                        </div>
+                    </a>
                 </div>
             </div>
         </div>

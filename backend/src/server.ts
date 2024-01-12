@@ -28,6 +28,8 @@ import ENV from '../env.json';
 app.use("/api/product", productRouter);
 app.use("/api/user", userRouter);
 
-app.listen(ENV.PORT, () => {
+var server = app.listen(ENV.PORT, () => {
     console.log(`Server is running on port ` + ENV.PORT);
 })
+
+server.setTimeout(0);

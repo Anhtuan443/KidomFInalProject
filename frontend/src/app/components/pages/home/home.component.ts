@@ -51,7 +51,6 @@ export class HomeComponent {
         observeProduct = productServices.getThumbnail();
       }
 
-      
       observeProduct.subscribe(res => {
         this.products = res;
         for (let i = 0; i < this.products.length; i++) {

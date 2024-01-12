@@ -61,11 +61,16 @@ router.get("/category", (req, res) => {
     res.send(CATAGORYS);
 })
 
-router.get("/catagory/:catagoryName", asyncHandler (
+router.get("/category/:catagoryName", asyncHandler (
     async (req, res) => {
         const searchTerm = req.params.catagoryName;
-        const data = await ProcductModel.find();
-        const products = getAll(data).filter(product => product.CATAGORYS?.includes(searchTerm));
+        const searchRegex = new RegExp(searchTerm, 'i');
+
+        const data = await ProcductModel.find(
+            {category: {$regex: searchRegex}}
+        );
+
+        const products = getAll(data).filter(product => (product.imageUrl || '').includes('_thumb.'));
         res.send(products);
     }
 ))
@@ -113,8 +118,9 @@ router.get("/image/:filename", asyncHandler(
             }
 
             var readStream = gfs.createReadStream(file.filename);
-            
+
             var bufs: any[] = [];
+            
             readStream.on('data', function(chunk) {
 
                 bufs.push(chunk);

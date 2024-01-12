@@ -24,75 +24,16 @@ export class ProductDetailComponent implements OnInit {
     quantity: number=1;
     relatedProducts: Product[] = [];
     isClicked: boolean = false;
-    products2: Product[] = [];
+    productsRelated: Product[] = [];
     
   constructor(
     private productService: ProductService,
-    private activatedRoute: ActivatedRoute,
     private catagoryService: CatagoryService,
     private route: ActivatedRoute,
     private cartService: CartService,
     private router: Router,
-    private productServices: ProductService,
-    private catagoryServices: CatagoryService,
   ) {
-    
-    route.queryParams.subscribe(params => {
-      productService.getDetail(params['id']).subscribe(res => {
-        this.products = res;
-
-        for (let i = 0; i < this.products.length; i++) {
-          this.productService.getImage(this.products[i].imageUrl).subscribe(res => {
-            this.products[i].imageHTML = res.img;
-          });
-        }
-
-        console.log(params['id']);
-        console.log(this.products);
-      });
-      productService.getProductThumbnail(params['id']).subscribe(res => {
-        this.thumbnail = res;
-        this.productService.getImage(this.thumbnail.imageUrl).subscribe(res => {
-          this.thumbnail.imageHTML = res.img;
-        });
-      });
-      console.log(this.products);
-    });
     this.catagorys= catagoryService.getAll(); 
-    // this.relatedProducts = productService.getAll();
-    
-    // Sản phẩm liên quan
-    productServices.getThumbnail().subscribe(res => {
-      this.products2 = res;
-      for (let i = 0; i < this.products2.length; i++) {
-        this.productService.getImage(this.products2[i].imageUrl).subscribe(res => {
-          this.products2[i].imageHTML = res.img;
-        });
-      }
-    });
-    this.catagorys = catagoryServices.getAll();
-
-    console.log(this.products2);
-
-    let observeProduct: Observable<Product[]>;
-
-    this.activatedRoute.params.subscribe((params) => {
-      if (params.searchTerm) {
-        observeProduct = this.productServices.getAllProductsBySearchTerm(params.searchTerm);
-      } else {
-        observeProduct = productServices.getThumbnail();
-      }
-
-      observeProduct.subscribe(res => {
-        this.products2 = res;
-        for (let i = 0; i < this.products2.length; i++) {
-          this.productService.getImage(this.products2[i].imageUrl).subscribe(res => {
-            this.products2[i].imageHTML = res.img;
-          });
-        }
-      })
-    });
-    // Hết sản phẩm liên quan
   }
   toggleHeart() {
     this.isClicked = !this.isClicked;
@@ -111,16 +52,41 @@ export class ProductDetailComponent implements OnInit {
     console.log('Quantity changed:', this.quantity);
   }
 //------------------------------------------------
-ngOnInit(): void {
-  this.route.params.subscribe(params => {
-    const productId = params['id'];
-    // Gọi phương thức hoặc service để lấy sản phẩm chi tiết (this.productServices.getDetail(productId))
-    // Sau đó, gọi phương thức hoặc service để lấy các sản phẩm cùng danh mục
-    this.productService.getProductsByCategory(this.thumbnail.category).subscribe(res => {
-      this.relatedProducts = res;
+  ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      console.log(params);
+
+      this.productService.getDetail(params['id']).subscribe(res => {
+        this.products = res;
+
+        for (let i = 0; i < this.products.length; i++) {
+          this.productService.getImage(this.products[i].imageUrl).subscribe(res => {
+            this.products[i].imageHTML = res.img;
+          });
+        }
+      });
+
+      this.productService.getProductThumbnail(params['id']).subscribe(res => {
+        this.thumbnail = res;
+        this.productService.getImage(this.thumbnail.imageUrl).subscribe(res => {
+          this.thumbnail.imageHTML = res.img;
+        });
+
+        console.log(this.thumbnail);
+
+        this.productService.getProductsByCategory(this.thumbnail.category).subscribe(res => {
+          this.productsRelated = res;
+          this.productsRelated = this.productsRelated.filter(product => product.id !== this.thumbnail.id);
+          for (let i = 0; i < this.productsRelated.length; i++) {
+            this.productService.getImage(this.productsRelated[i].imageUrl).subscribe(res => {
+              this.productsRelated[i].imageHTML = res.img;
+            });
+          }
+        });
+      });
+
     });
-});
-}
+  }
 
   changeThumbnail(index: number): void {
     let temp = this.thumbnail;
