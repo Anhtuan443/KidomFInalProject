@@ -40,11 +40,21 @@ export class ProductDetailComponent implements OnInit {
     route.queryParams.subscribe(params => {
       productService.getDetail(params['id']).subscribe(res => {
         this.products = res;
+
+        for (let i = 0; i < this.products.length; i++) {
+          this.productService.getImage(this.products[i].imageUrl).subscribe(res => {
+            this.products[i].imageHTML = res.img;
+          });
+        }
+
         console.log(params['id']);
         console.log(this.products);
       });
       productService.getProductThumbnail(params['id']).subscribe(res => {
         this.thumbnail = res;
+        this.productService.getImage(this.thumbnail.imageUrl).subscribe(res => {
+          this.thumbnail.imageHTML = res.img;
+        });
       });
       console.log(this.products);
     });
@@ -54,6 +64,11 @@ export class ProductDetailComponent implements OnInit {
     // Sản phẩm liên quan
     productServices.getThumbnail().subscribe(res => {
       this.products2 = res;
+      for (let i = 0; i < this.products2.length; i++) {
+        this.productService.getImage(this.products2[i].imageUrl).subscribe(res => {
+          this.products2[i].imageHTML = res.img;
+        });
+      }
     });
     this.catagorys = catagoryServices.getAll();
 
@@ -70,6 +85,11 @@ export class ProductDetailComponent implements OnInit {
 
       observeProduct.subscribe(res => {
         this.products2 = res;
+        for (let i = 0; i < this.products2.length; i++) {
+          this.productService.getImage(this.products2[i].imageUrl).subscribe(res => {
+            this.products2[i].imageHTML = res.img;
+          });
+        }
       })
     });
     // Hết sản phẩm liên quan
