@@ -126,7 +126,7 @@ router.get("/image/:filename", asyncHandler(
             
                 var base64 = (fbuf.toString('base64'));
             
-                res.json({img: '<img src="data:image/png;base64,' + base64 + '">'});
+                res.json({img: 'data:image/png;base64,' + base64});
             });
         })
     }
