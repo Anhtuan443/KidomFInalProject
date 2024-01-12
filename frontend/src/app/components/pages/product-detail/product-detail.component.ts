@@ -54,7 +54,6 @@ export class ProductDetailComponent implements OnInit {
 //------------------------------------------------
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      console.log(params);
 
       this.productService.getDetail(params['id']).subscribe(res => {
         this.products = res;
@@ -71,8 +70,6 @@ export class ProductDetailComponent implements OnInit {
         this.productService.getImage(this.thumbnail.imageUrl).subscribe(res => {
           this.thumbnail.imageHTML = res.img;
         });
-
-        console.log(this.thumbnail);
 
         this.productService.getProductsByCategory(this.thumbnail.category).subscribe(res => {
           this.productsRelated = res;

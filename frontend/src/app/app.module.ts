@@ -33,7 +33,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GalleriaModule } from 'primeng/galleria';
 import { IndexComponent } from './components/partials/index/index.component';
 import { NavComponent } from './components/partials/nav/nav.component';  
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 import { AdminComponent } from './components/admin/admin.component';
 import { ProductComponent } from './components/admin/product/product.component';
@@ -53,6 +53,7 @@ import { Blogdetail3Component } from './components/pages/blogdetail3/blogdetail3
 import { Blogdetail4Component } from './components/pages/blogdetail4/blogdetail4.component';
 import { Blogdetail5Component } from './components/pages/blogdetail5/blogdetail5.component';
 import { Blogdetail6Component } from './components/pages/blogdetail6/blogdetail6.component';
+import { requestInterceptor } from './shared/interceptors/http-cancelling.interceptor';
 
 @NgModule({
   declarations: [
@@ -116,7 +117,9 @@ import { Blogdetail6Component } from './components/pages/blogdetail6/blogdetail6
     MatMenuModule,
     MatButtonModule
   ],
-  providers: [],
+  providers: [
+    {provide: HTTP_INTERCEPTORS, useClass: requestInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
