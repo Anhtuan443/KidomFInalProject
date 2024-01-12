@@ -25,6 +25,11 @@ export class CategoryComponent implements OnInit {
       this.categoryName = params.get('catagoryName') ?? '';
       this.productService.getProductsByCategory(this.categoryName).subscribe(res => {
         this.products = res;
+        for (let i = 0; i < this.products.length; i++) {
+          this.productService.getImage(this.products[i].imageUrl).subscribe(res => {
+            this.products[i].imageHTML = res.img;
+          });
+        }
       });
       console.log(this.products);
 
