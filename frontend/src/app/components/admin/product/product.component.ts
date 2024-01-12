@@ -24,7 +24,7 @@ export class ProductComponent {
 
   constructor(config: NgbModalConfig,
 		private modalService: NgbModal,
-    private productService: ProductService,) {
+    private productServices: ProductService,) {
       config.backdrop = 'static';
 		  config.keyboard = false;
       this.resetForm();
@@ -34,13 +34,13 @@ export class ProductComponent {
 
   loadData() {
     this.products = [];
-    this.productService.getThumbnail().subscribe(res => {
+    this.productServices.getThumbnail().subscribe(res => {
       this.products = res;
       for (let i = 0; i < this.products.length; i++) {
-        this.productService.getImage(this.products[i].imageUrl).subscribe(res => {
+        this.productServices.getImage(this.products[i].imageUrl).subscribe(res => {
           this.products[i].imageHTML = res.img;
         });
-      };
+      }
     });
   }
 
@@ -54,7 +54,7 @@ export class ProductComponent {
       this.model.imgUrls!.push(image.name);
     });
 
-    this.productService.uploadProduct(this.model, this.images);
+    this.productServices.uploadProduct(this.model, this.images);
 
     // Reset form after submission
     this.resetForm();
@@ -145,6 +145,6 @@ export class ProductComponent {
 	}
 
   deleteProduct(product: Product) {
-    this.productService.deleteProduct(product.id);
+    this.productServices.deleteProduct(product.id);
   }
 }

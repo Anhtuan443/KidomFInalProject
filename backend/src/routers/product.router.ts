@@ -8,7 +8,6 @@ import { HTTP_FILE_EXISTS } from "../constants/http_status";
 
 const router = Router();
 
-
 function getAll(products: Product[]) {
     var data = [];
 
@@ -126,7 +125,7 @@ router.get("/image/:filename", asyncHandler(
             
                 var base64 = (fbuf.toString('base64'));
             
-                res.json({img: '<img src="data:image/png;base64,' + base64 + '">'});
+                res.json({img: 'data:image/png;base64,' + base64});
             });
         })
     }

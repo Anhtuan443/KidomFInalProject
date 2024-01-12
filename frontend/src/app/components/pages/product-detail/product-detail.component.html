@@ -29,13 +29,13 @@
 
                         <ng-template pTemplate="item" let-product>
                             <img 
-                                [src]="product.imageUrl"
+                                [src]="product.imageHTML"
                                 style="height: 450px; display: block;"/>
                         </ng-template>
                         <ng-template pTemplate="thumbnail" let-product let-i="index"> 
                             <div class="grid grid-nogutter  
                                         justify-content-center pe-4"> 
-                                <img [src]="product.imageUrl" height="70px"/> 
+                                <img [src]="product.imageHTML" height="70px"/> 
                             </div> 
                         </ng-template> 
                     </p-galleria>
@@ -180,7 +180,7 @@
                         [queryParams]="{id: product.id}"
                          class="text-decoration-none" >
                         <div class="card mb-3" >
-                            <img [src]="product.imageUrl" class="card-img" alt="" id="hinh{{i + 1}}">
+                            <img [src]="product.imageHTML" class="card-img" alt="" id="hinh{{i + 1}}">
                             <div class="p-2">
                                 <h6 class="text-black-50 p-2">{{product.category}}</h6>
                                 <h5 class="card-title text-center mt-2">{{product.name}}</h5>
@@ -208,7 +208,7 @@
                     <ng-container *ngIf="product.category === thumbnail.category">
                         <a routerLink="/productDetail/{{product.name}}" [queryParams]="{id: product.id}" class="text-decoration-none">
                             <div class="card mb-3">
-                                <img [src]="product.imageUrl" class="card-img" alt="" id="hinh{{i + 1}}">
+                                <img [src]="product.imageHTML" class="card-img" alt="" id="hinh{{i + 1}}">
                                 <div class="p-2">
                                     <h6 class="text-black-50 p-2">{{product.category}}</h6>
                                     <h5 class="card-title text-center mt-2">{{product.name}}</h5>
