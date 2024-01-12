@@ -129,6 +129,33 @@ router.post("/image/upload", upload.single("file"), asyncHandler(
     }
 ));
 
+router.get("/image/:filename", asyncHandler(
+    async (req, res) => {
+        const filename = req.params.filename;
+        gfs.files.findOne({filename: filename}, function (err, file) {
+            if (!file || file.length === 0) {
+                return res.status(404).send("File not found");
+            }
+
+            var readStream = gfs.createReadStream(file.filename);
+            
+            var bufs: any[] = [];
+            readStream.on('data', function(chunk) {
+
+                bufs.push(chunk);
+            
+            }).on('end', function() { // done
+            
+                var fbuf = Buffer.concat(bufs);
+            
+                var base64 = (fbuf.toString('base64'));
+            
+                res.json({img: 'data:image/png;base64,' + base64});
+            });
+        })
+    }
+));
+
 router.post("/upload", asyncHandler(
     async (req, res) => {
 
