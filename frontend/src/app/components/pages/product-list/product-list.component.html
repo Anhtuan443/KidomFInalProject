@@ -63,7 +63,7 @@
                 <div class="col-6 col-md-4" *ngFor="let product of filteredProducts; index as i">
                   <a [routerLink]="['/productDetail', product.name]" [queryParams]="{id: product.id}" class="text-decoration-none">
                     <div class="card mb-3">
-                      <img [src]="product.imageUrl" class="card-img" alt id="hinh{{i + 1}}">
+                      <img [src]="product.imageHTML" class="card-img" alt id="hinh{{i + 1}}">
                       <div class="p-2">
                         <h6 class="text-black-50 p-2">{{product.category}}</h6>
                         <h5 class="card-title text-center mt-2" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{product.name}}</h5>

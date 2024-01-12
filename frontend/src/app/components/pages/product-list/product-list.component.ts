@@ -35,6 +35,13 @@ export class ProductListComponent {
   ngOnInit(): void {
     this.productServices.getThumbnail().subscribe((data: Product[]) => {
         this.products = data;
+
+        for (let i = 0; i < this.products.length; i++) {
+            this.productServices.getImage(this.products[i].imageUrl).subscribe(res => {
+                this.products[i].imageHTML = res.img;
+            });
+        }
+
         this.filteredProducts = this.products;
         this.brands = Array.from(new Set(this.products.map(product => product.brand || '')));
 
@@ -49,6 +56,12 @@ export class ProductListComponent {
             if (params.searchTerm) {
                 this.productServices.getAllProductsBySearchTerm(params.searchTerm).subscribe((searchResults: Product[]) => {
                     this.filteredProducts = searchResults;
+
+                    for (let i = 0; i < this.filteredProducts.length; i++) {
+                        this.productServices.getImage(this.filteredProducts[i].imageUrl).subscribe(res => {
+                            this.filteredProducts[i].imageHTML = res.img;
+                        });
+                    }
                 });
             } else {
                 this.filteredProducts = this.products;
