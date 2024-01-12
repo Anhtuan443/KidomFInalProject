@@ -70,6 +70,10 @@ export class ProductService {
     return success;
   }
 
+  getImage(fileName: string): Observable<any> {
+    return this.http.get(PRODUCT_IMAGE_URL + fileName);
+  }
+
   deleteOnlyProduct(id: string) {
     this.http.delete(PRODUCT_DELETE_URL + id).subscribe(
       res => {
