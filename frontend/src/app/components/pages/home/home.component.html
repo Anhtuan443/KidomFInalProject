@@ -75,10 +75,8 @@
         <div class="container bg-light p-3 cover">
             <div class="position-relative">
                 <div class="tieude text-center">
-                    <a routerLink="catagory/{CatagoryNew}">
                         <img src="assets/img/logo/tieude.png" alt
                             class="thanhtieude m-1">
-                    </a>
                 </div>
                 <div
                     class="position-absolute top-50 start-50 translate-middle text-black">
@@ -133,7 +131,7 @@
             </div>
             <div class="row mt-3">
                 <div class="col-xl-4 text-center mb-3"
-                    *ngFor="let banner of banners">
+                    *ngFor="let banner of banners" (click)="navigateToBanner(banner)">
                     <img [src]="banner.imageUrl" alt class="blog">
                 </div>
             </div>

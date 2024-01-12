@@ -74,4 +74,8 @@ export class HomeComponent {
   navigateToProductList(categoryValue: string): void {
     this.router.navigate(['/product'], { queryParams: { category: categoryValue.toUpperCase() } });
   }
+  navigateToBanner(banner: Banner): void {
+    // Sử dụng Router để chuyển hướng đến trang tương ứng với banner.name
+    this.router.navigate([`/${banner.name}`]);
+  }
 }

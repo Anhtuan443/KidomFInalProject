@@ -47,6 +47,12 @@ import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { ProductListComponent } from './components/pages/product-list/product-list.component';
+import { Blogdetail1Component } from './components/pages/blogdetail1/blogdetail1.component';
+import { Blogdetail2Component } from './components/pages/blogdetail2/blogdetail2.component';
+import { Blogdetail3Component } from './components/pages/blogdetail3/blogdetail3.component';
+import { Blogdetail4Component } from './components/pages/blogdetail4/blogdetail4.component';
+import { Blogdetail5Component } from './components/pages/blogdetail5/blogdetail5.component';
+import { Blogdetail6Component } from './components/pages/blogdetail6/blogdetail6.component';
 
 @NgModule({
   declarations: [
@@ -82,6 +88,12 @@ import { ProductListComponent } from './components/pages/product-list/product-li
     BlogAdComponent,
     DashboardComponent,
     ProductListComponent,
+    Blogdetail1Component,
+    Blogdetail2Component,
+    Blogdetail3Component,
+    Blogdetail4Component,
+    Blogdetail5Component,
+    Blogdetail6Component,
   ],
   imports: [
     BrowserModule,

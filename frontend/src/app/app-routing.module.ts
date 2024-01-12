@@ -22,6 +22,12 @@ import { OrderComponent } from './components/admin/order/order.component';
 import { ProductComponent } from './components/admin/product/product.component';
 import { DashboardComponent } from './components/admin/dashboard/dashboard.component';
 import { ProductListComponent } from './components/pages/product-list/product-list.component';
+import { Blogdetail1Component } from './components/pages/blogdetail1/blogdetail1.component';
+import { Blogdetail2Component } from './components/pages/blogdetail2/blogdetail2.component';
+import { Blogdetail3Component } from './components/pages/blogdetail3/blogdetail3.component';
+import { Blogdetail4Component } from './components/pages/blogdetail4/blogdetail4.component';
+import { Blogdetail5Component } from './components/pages/blogdetail5/blogdetail5.component';
+import { Blogdetail6Component } from './components/pages/blogdetail6/blogdetail6.component';
 
 
 const routes: Routes = [
@@ -44,6 +50,13 @@ const routes: Routes = [
       {path: 'aboutus', component: AboutUsComponent},
       {path: 'cart', component: CartComponent},
       {path: 'product', component: ProductListComponent},
+      {path: 'blog1', component: Blogdetail1Component},
+      {path: 'blog2', component: Blogdetail2Component},
+      {path: 'blog3', component: Blogdetail3Component},
+      {path: 'blog4', component: Blogdetail4Component},
+      {path: 'blog5', component: Blogdetail5Component},
+      {path: 'blog6', component: Blogdetail6Component},
+
     ]
   },
   {path: 'design-by-you', component: DesignByYouComponent},
