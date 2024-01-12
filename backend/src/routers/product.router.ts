@@ -8,38 +8,13 @@ import { HTTP_FILE_EXISTS } from "../constants/http_status";
 
 const router = Router();
 
-
-function getImage (filename: string) {
-    gfs.files.findOne({filename: filename}, function (err, file) {
-        if (!file || file.length === 0) {
-            return "";
-        }
-
-        var readStream = gfs.createReadStream(file.filename);
-        
-        var bufs: any[] = [];
-        readStream.on('data', function(chunk) {
-
-            bufs.push(chunk);
-        
-        }).on('end', function() { // done
-        
-            var fbuf = Buffer.concat(bufs);
-        
-            var base64 = (fbuf.toString('base64'));
-        
-            return 'data:image/png;base64,' + base64;
-        });
-    })
-}
-
 function getAll(products: Product[]) {
     var data = [];
 
     for (var item of products) {
         for (var img of item.imageUrl) {
             var temp = JSON.parse(JSON.stringify(item));
-            temp.imageUrl = getImage(img);
+            temp.imageUrl = img;
 
             data.push(temp);
         }

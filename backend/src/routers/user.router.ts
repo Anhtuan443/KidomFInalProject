@@ -8,6 +8,13 @@ import bcrypt from 'bcryptjs';
 
 const router = Router();
 
+router.get("/", asyncHandler(
+    async (req, res) => {
+        const data = await UserModel.find();
+        res.send(data);
+    }
+))
+
 router.get("/seed", asyncHandler(
     async (req, res) => {
         const productCount = await UserModel.countDocuments();
