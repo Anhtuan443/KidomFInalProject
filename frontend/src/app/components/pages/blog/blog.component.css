@@ -96,3 +96,6 @@ p{
     line-height: 1.5;
     padding: 10px;
 }
+a {
+    text-decoration: none;
+}

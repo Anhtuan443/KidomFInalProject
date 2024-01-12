@@ -74,8 +74,8 @@
         <!-- Add your table rows dynamically here -->
           <tr>
               <td>{{product.id}}</td>
-              <td class="image-cell">
-                <img class = "card-img" [src]="product.imageHTML">
+              <td>
+                <img class="image-cell" [ngClass]="'image-cell-small'" [src]="product.imageHTML">
               </td>
               <td>{{product.name}}</td>
               <td>{{product.category}}</td>

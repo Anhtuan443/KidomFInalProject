@@ -28,12 +28,18 @@ export const USERS: User[] = [
 ]
 
 export const BANNERS: Banner[] = [
-    {imageUrl: bannerPath + 'banner1.jpeg'},
-    {imageUrl: bannerPath + 'banner2.gif'},
-    {imageUrl: bannerPath + 'banner3.jpeg'},
-    {imageUrl: bannerPath + 'banner4.jpeg'},
-    {imageUrl: bannerPath + 'banner5.jpeg'},
-    {imageUrl: bannerPath + 'banner6.jpeg'},
+    {imageUrl: bannerPath + 'banner1.jpg',
+    name: "blog1"},
+    {imageUrl: bannerPath + 'banner2.jpg',
+    name: "blog2"},
+    {imageUrl: bannerPath + 'banner3.jpg',
+    name: "blog3"},
+    {imageUrl: bannerPath + 'banner4.jpg',
+    name: "blog4"},
+    {imageUrl: bannerPath + 'banner5.jpg',
+    name: "blog5"},
+    {imageUrl: bannerPath + 'banner6.jpg',
+    name: "blog6"},
 ]
 
 export const CATAGORYS: Catagory[] = [
