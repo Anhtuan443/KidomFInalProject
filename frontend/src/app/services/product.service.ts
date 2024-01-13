@@ -130,14 +130,7 @@ export class ProductService {
       .subscribe(
         res => { success = true; },
         err => {
-          this.toastrService.error(
-            err.error,
-            `Thêm ảnh ` + image.name + ` thất bại`
-          );
 
-          if (err.status != HTTP_FILE_EXISTS) {
-            success = false;
-          }
         }
       );
     }
