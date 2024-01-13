@@ -54,14 +54,14 @@ export class ProductService {
     var success = true;
 
     for(let fileName of fileNames) {
-      this.http.delete(PRODUCT_IMAGE_DELETE_URL + fileName).subscribe(
+      this.http.get(PRODUCT_IMAGE_DELETE_URL + fileName).subscribe(
         res => {},
         err => {
           success = false;
 
           this.toastrService.error(
             err.error,
-            `Xoá sản phẩm ` + id + ` thất bại`,
+            `Xoá ảnh ` + fileName + ` thất bại`,
           );
         }
       )
@@ -75,7 +75,7 @@ export class ProductService {
   }
 
   deleteOnlyProduct(id: string) {
-    this.http.delete(PRODUCT_DELETE_URL + id).subscribe(
+    this.http.get(PRODUCT_DELETE_URL + id).subscribe(
       res => {
         this.toastrService.success(
           `Xoá sản phẩm ` + id + ` thành công`,

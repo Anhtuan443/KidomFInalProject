@@ -106,10 +106,11 @@ export class DesignByYouComponent implements OnInit{
 
   addToCart() {
     var data: Product = {
+        imageHTML: this.image,
         imageUrl: this.image,
         name: this.nameBear,
         category: 'Design By You',
-        price: 450.000,
+        price: 450000,
         id: this.id,
         description: 'Description of product 1',
         star: 5,

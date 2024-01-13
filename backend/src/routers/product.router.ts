@@ -167,7 +167,7 @@ router.post("/upload", asyncHandler(
     }
 ));
 
-router.delete("/delete/:id", asyncHandler(
+router.get("/delete/:id", asyncHandler(
     async (req, res) => {
         const id = req.params.id;
         await ProcductModel.deleteOne({id: id});
@@ -175,7 +175,7 @@ router.delete("/delete/:id", asyncHandler(
     }
 ));
 
-router.delete("/image/delete/:filename", asyncHandler(
+router.get("/image/delete/:filename", asyncHandler(
     async (req, res) => {
         const filename = req.params.filename;
         gfs.remove({filename: filename, root: "uploads"}, function (err: Error) {
