@@ -132,7 +132,7 @@ export class ProductService {
         err => {
           this.toastrService.error(
             err.error,
-            `Thêm ảnh thất bại`
+            `Thêm ảnh ` + image.name + ` thất bại`
           );
 
           if (err.status != HTTP_FILE_EXISTS) {

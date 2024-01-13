@@ -281,6 +281,10 @@ input:disabled{
   transition: all .8s ease;
 }
 
+.fil0 {
+  fill: #5881ff;
+}
+
 .btn-sale:hover {
   background: transparent;
   color: #5881ff;
