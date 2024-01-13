@@ -34,11 +34,13 @@ import ENV from '../env.json';
 app.use("/api/product", productRouter);
 app.use("/api/user", userRouter);
 
+const PORT = process.env.PORT || ENV.PORT;
+
 var server = app.listen(
-    Number.parseInt(ENV.PORT), 
+    Number.parseInt(PORT), 
     "0.0.0.0", 
     () => {
-    console.log(`Server is running on port ` + ENV.PORT);
+    console.log(`Server is running on port ` + PORT);
 })
 
 server.timeout = 1000000;

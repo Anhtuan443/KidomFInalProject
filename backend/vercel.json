@@ -1,5 +1,6 @@
 {
     "version": 2,
+    "framework": "node",
     "builds": [
         {
             "src": "/src/server.ts",
@@ -9,7 +10,7 @@
     "routes": [
         {
             "src": "/src/(.*)",
-            "dest": "server.ts"
+            "dest": "/server.ts"
         }
     ]
 }
