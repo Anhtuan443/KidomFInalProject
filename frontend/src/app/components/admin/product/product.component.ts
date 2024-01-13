@@ -36,11 +36,11 @@ export class ProductComponent {
     this.products = [];
     this.productServices.getThumbnail().subscribe(res => {
       this.products = res;
-      for (let i = 0; i < this.products.length; i++) {
-        this.productServices.getImage(this.products[i].imageUrl).subscribe(res => {
-          this.products[i].imageHTML = res.img;
-        });
-      }
+      // for (let i = 0; i < this.products.length; i++) {
+      //   this.productServices.getImage(this.products[i].imageUrl).subscribe(res => {
+      //     this.products[i].imageHTML = res.img;
+      //   });
+      // }
     });
   }
 
