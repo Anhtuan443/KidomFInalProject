@@ -1,6 +1,6 @@
 import ENV from '../../../../../env.json';
 
-const BASE_URL = '';
+const BASE_URL = 'kidom-api.vercel.app';
 
 export const PRODUCTS_URL = BASE_URL + '/api/product';
 
